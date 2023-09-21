@@ -59,6 +59,7 @@ server.listen(7000, () => {
 //!Listen to Event
 server.on("request", (req, res) => {
   //console.log(req); this will give the bunch of methods when the user visits the page.
+  console.log(req.method);
   //*get the url
   const url = req.url;
   //   console.log(url);
@@ -103,5 +104,25 @@ server.on("request", (req, res) => {
         res.end();
       }
     });
+  }
+
+  //!parse incoming data(payload)
+  if (url === "/create-post" && req.method === "POST") {
+    //receive the incoming data
+    const post = [];
+    req
+      .on("data", (chunk) => {
+        // console.log(chunk);
+        post.push(chunk);
+      })
+      .on("data", function () {
+        // console.log("Data here");
+        //*pass the buffer data into string
+        const parsedData = Buffer.concat(post).toString();
+        res.writeHead(200, { "content-Type": "text/json" });
+        console.log(parsedData);
+        res.write("Post created");
+        res.end();
+      });
   }
 });
