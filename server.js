@@ -23,10 +23,25 @@ server.listen(7000, () => {
 });
 
 //create login html file
+// fs.writeFile(
+//   "login.html",
+//   `<div><h1>This is login Page</h1>
+//   <p> Please provide your valid login credentials</P></div>
+//   `,
+//   (err) => {
+//     if (err) {
+//       console.log(err);
+//     } else {
+//       console.log("File has been created");
+//     }
+//   }
+// );
+
+//create register html file
 fs.writeFile(
-  "login.html",
-  `<div><h1>This is login Page</h1>
-<p> Please provide your valid login credentials</P></div>
+  "Register.html",
+  `<div><h1>This is Register Page</h1>
+<p> Please provide your Details</P></div>
 `,
   (err) => {
     if (err) {
